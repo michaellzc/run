@@ -77,6 +77,11 @@ func Bash(ctx context.Context, parts ...string) *Command {
 	return Cmd(ctx, "bash -c", Arg(strings.Join(parts, " ")))
 }
 
+// Powershell joins all the parts and builds a command from it to be run by 'powershell.exe -NoProfile -nologo'.
+func Powershell(ctx context.Context, parts ...string) *Command {
+	return Cmd(ctx, "powershell.exe", "-NoProfile", "-nologo", Arg(strings.Join(parts, " ")))
+}
+
 // Run starts command execution and returns Output, which defaults to combined output.
 func (c *Command) Run() Output {
 	if c.buildError != nil {
